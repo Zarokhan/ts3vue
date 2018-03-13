@@ -5,6 +5,7 @@ import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import BootstrapVue from 'bootstrap-vue'
 import Routes from './routes'
+import Store from './store'
 import App from './App'
 
 // Vue dependencies
@@ -27,5 +28,6 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   router,
+  store: Store,
   render: h => h(App)
 })

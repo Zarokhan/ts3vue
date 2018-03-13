@@ -1,5 +1,5 @@
 <template>
-    <div class="admins">
+    <div class="players">
         <b-container>
             <b-row>
                 <b-col>
@@ -15,7 +15,7 @@
                         tag="article"
                         class="mb-2">
                         <p class="card-text">
-                            Dies first
+                            Tha best, mby dies first
                         </p>
                     </b-card>
                 </b-col>
@@ -27,7 +27,7 @@
                         tag="article"
                         class="mb-2">
                         <p class="card-text">
-                            HoN Player
+                            MLG HoN Player
                         </p>
                     </b-card>
                 </b-col>
@@ -39,9 +39,19 @@
                         tag="article"
                         class="mb-2">
                         <p class="card-text">
-                            Loves beer
+                            HartBreaker, Loves beer
                         </p>
                     </b-card>
+                </b-col>
+            </b-row>
+            <b-row>
+                <b-col>
+                    <h3>Preachers</h3>
+                    <ul>
+                        <li>NoName - Pussy Destroyer - Also don't know how to change name on ts3.</li>
+                        <li>Hätta - Bob the Builder</li>
+                        <li>Germans and Brits</li>
+                    </ul>
                 </b-col>
             </b-row>
         </b-container>
@@ -50,7 +60,7 @@
 
 <script>
     export default {
-        name: 'admins',
+        name: 'players',
         data() {
             return {
                 putin: require('../assets/putin.jpg'),
@@ -62,8 +72,8 @@
 </script>
 
 <style lang="scss" scoped>
-.admins {
-    h1, h2 {
+.players {
+    h1, h2, h3 {
         padding: 20px 0;
     }
 }
