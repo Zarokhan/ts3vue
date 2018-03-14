@@ -1,8 +1,33 @@
 <template>
   <div id="app">
-    <div id="header">
-      <h1>Hyllstofta Country Club <b-badge>ts3.leetdeveloper.se</b-badge> <img src="./assets/ts3.png"></h1>
-    </div>
+    <b-carousel id="imgcarousel"
+                style="text-shadow: 1px 1px 2px #333;"
+                indicators
+                background="#ababab"
+                :interval="4000"
+                v-model="slide"
+                @sliding-start="onSlideStart"
+                @sliding-end="onSlideEnd"
+    >
+      <b-carousel-slide caption="" img-blank img-alt="" class="carosell-inner hyllstofta">
+        <h1>Hyllstofta Country Club <b-badge>ts3.leetdeveloper.se</b-badge> <img id="ts3" src="./assets/ts3.png"></h1>
+      </b-carousel-slide>
+      <b-carousel-slide caption="" img-blank img-alt="" class="carosell-inner bf1">
+        <h1>Hyllstofta Country Club <b-badge>ts3.leetdeveloper.se</b-badge> <img id="ts3" src="./assets/ts3.png"></h1>
+      </b-carousel-slide>
+      <b-carousel-slide caption="" img-blank img-alt="" class="carosell-inner csgo">
+        <h1>Hyllstofta Country Club <b-badge>ts3.leetdeveloper.se</b-badge> <img id="ts3" src="./assets/ts3.png"></h1>
+      </b-carousel-slide>
+      <b-carousel-slide caption="" img-blank img-alt="" class="carosell-inner pubg">
+        <h1>Hyllstofta Country Club <b-badge>ts3.leetdeveloper.se</b-badge> <img id="ts3" src="./assets/ts3.png"></h1>
+      </b-carousel-slide>
+      <b-carousel-slide caption="" img-blank img-alt="" class="carosell-inner bf4">
+        <h1>Hyllstofta Country Club <b-badge>ts3.leetdeveloper.se</b-badge> <img id="ts3" src="./assets/ts3.png"></h1>
+      </b-carousel-slide>
+      <b-carousel-slide caption="" img-blank img-alt="" class="carosell-inner hon">
+        <h1>Hyllstofta Country Club <b-badge>ts3.leetdeveloper.se</b-badge> <img id="ts3" src="./assets/ts3.png"></h1>
+      </b-carousel-slide>
+    </b-carousel>
 
     <b-navbar toggleable="md" type="dark" variant="info" id="mynav">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
@@ -27,16 +52,18 @@
 <script>
 export default {
   name: 'App',
-    data() {
-      return {
-        background: [
-          './assets/hyllstofta-bg.jpg',
-          './assets/csgo.jpg',
-          './assets/bf1.jpg',
-          './assets/pubg.jpg',
-          './assets/hon.jpg',
-          './assets/bf4.jpg'
-        ]
+  data () {
+    return {
+      slide: 0,
+      sliding: null
+    }
+  },
+  methods: {
+    onSlideStart (slide) {
+      this.sliding = true
+    },
+    onSlideEnd (slide) {
+      this.sliding = false
     }
   }
 }
@@ -53,25 +80,45 @@ $white: #fff;
   color: $darkgray;
 }
 
-#header {
-  background: url('./assets/hyllstofta-bg.jpg') no-repeat center center fixed;
+.hyllstofta {
+  background: url('./assets/hyllstofta-bg.jpg') no-repeat center 100% fixed;
+}
+
+.bf1 {
+  background: url('./assets/bf1.jpg') no-repeat center 120% fixed;
+}
+
+.bf4 {
+  background: url('./assets/bf4.jpg') no-repeat center 50% fixed;
+}
+
+.csgo {
+  background: url('./assets/csgo.jpg') no-repeat center 300% fixed;
+}
+
+.hon {
+  background: url('./assets/hon.jpg') no-repeat center center fixed;
+}
+
+.pubg {
+  background: url('./assets/pubg.jpg') no-repeat center 40% fixed;
+}
+
+.carosell-inner {
+  width: 100%;
+  height: 40em;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  padding: 20em 0;
   text-align: center;
 
-  .badge {
-    font-family: 'Mina', sans-serif !important;
+  #ts3 {
+    width: 100px;
   }
 
   h1 {
     font-size: 2em;
-  }
-
-  img {
-    width: 2em;
   }
 }
 
