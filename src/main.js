@@ -20,7 +20,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import { hubConnection } from 'signalr-no-jquery';
 const options = {  logging: true };
-const connection = hubConnection('http://localhost:53573', options);
+//const connection = hubConnection('http://localhost:53573', options);
+const connection = hubConnection('http://systembolagetwebapi.azurewebsites.net', options);
 const hubProxy = connection.createHubProxy("ts3ruleshub");
 
 hubProxy.on('addrule', function(id, rule) {
