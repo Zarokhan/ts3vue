@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import axios from 'axios'
     export default {
         name: 'start',
         data() {
@@ -85,7 +86,13 @@
                 if (this.$store.getters.getCheckedLength == 0) {
                     this.$store.commit('updateWarningmsg', 'You need to accept the terms and conditions!');
                 } else {
-                    warningmsg = '';
+                    axios.post('http://systembolagetwebapi.azurewebsites.net/api/Applicants',{
+                        Id: 0,
+                        Email: this.$store.state.form.email,
+                        FullName: this.$store.state.form.name,
+                        Alias: this.$store.state.form.nick,
+                        Country: this.$store.state.form.country
+                    });
                     this.$store.commit('updateWarningmsg', '');
                     this.$store.commit('updateShowform', false);
                 }
