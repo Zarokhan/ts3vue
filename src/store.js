@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios';
 
 Vue.use(Vuex)
 
@@ -14,11 +15,7 @@ export default new Vuex.Store({
     },
     showform: true,
     warningmsg: '',
-    rules: [
-        "Don't spam",
-        "Follow the supreme leaders",
-        "Respect woman"
-    ]
+    rules: []
   },
   getters: {
     getCheckedLength: state => {
@@ -32,11 +29,8 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    deleteRule (state, value) {
-        state.rules.splice(state.rules.indexOf(value), 1);
-    },
-    addRule (state, value) {
-        state.rules.push(value);
+    setRules (state, value) {
+        state.rules = value;
     },
     updateEmail (state, value) {
         state.form.email = value;
@@ -58,9 +52,31 @@ export default new Vuex.Store({
     },
     updateWarningmsg (state, value) {
         state.warningmsg = value;
+    },
+    deleteRule(state, Id) {
+        for (let index = 0; index < state.rules.length; index++) {
+            if (state.rules[index].Id == Id) {
+                state.rules.splice(index, 1);
+                return;
+            }
+        }
+    },
+    addRule(state, [Id, rule]) {
+        state.rules.push({Id: Id, Rule: rule});
     }
   },
   actions: {
-
+    fetchRules({ commit }) {
+        axios.get('http://systembolagetwebapi.azurewebsites.net/api/ts3rules?token=RUFMm3XVnKmFk4aLYELj7tJpN5RbAhWg')
+        //axios.get('http://localhost:53573/api/ts3rules?token=RUFMm3XVnKmFk4aLYELj7tJpN5RbAhWg')
+        .then(response => {
+            let rules = response.data;
+            //console.log(rules);
+            commit("setRules", rules);
+        })
+        .catch(e => {
+            console.log("Error rules api");
+        });
+    }
   }
 })

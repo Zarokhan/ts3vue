@@ -5,8 +5,8 @@
                 <b-col md="6">
                     <h2>Rules</h2>
                     <ol>
-                        <li v-for="rule in rules" :key="rule">
-                            {{rule}} <b-button @click="deleteRule(rule)" size="sm" variant="danger" v-b-popover.hover="'Delete: ' + rule" title="Delete Rule">X</b-button>
+                        <li v-for="rule in rules" :key="rule.Id">
+                            {{rule.Rule}} <b-button @click="deleteRule(rule.Id)" size="sm" variant="danger" v-b-popover.hover="'Delete: ' + rule.Rule" title="Delete Rule">X</b-button>
                         </li>
                     </ol>
                     <p v-show="(this.$store.getters.getRulesLength == 0) ? true : false">Wow, living on the "edge"...</p>
@@ -30,22 +30,47 @@
 </template>
 
 <script>
+import axios from 'axios'
     export default {
         name: 'rules',
         data() {
             return {
                 form: {
                     rule: ''
-                }
+                },
+                connection: null,
+                client: null
             }
         },
         methods: {
             addRule: function(e) {
                 e.preventDefault();
-                this.$store.commit('addRule', this.form.rule);
+                //this.$store.dispatch('addRule', [this.form.rule]);
+                axios.post('http://systembolagetwebapi.azurewebsites.net/api/ts3rules?token=RUFMm3XVnKmFk4aLYELj7tJpN5RbAhWg',{
+                //axios.post('http://localhost:53573/api/ts3rules?token=RUFMm3XVnKmFk4aLYELj7tJpN5RbAhWg',{
+                    Id: 0,
+                    Rule: this.form.rule
+                })
+                .then(function(response){
+
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })
+                this.form.rule = '';
             },
-            deleteRule: function(rule) {
-                this.$store.commit('deleteRule', rule);
+            deleteRule: function(Id) {
+                axios.delete('http://systembolagetwebapi.azurewebsites.net/api/ts3rules/' + Id + '?token=RUFMm3XVnKmFk4aLYELj7tJpN5RbAhWg')
+                //axios.delete('http://localhost:53573/api/ts3rules/' + Id + '?token=RUFMm3XVnKmFk4aLYELj7tJpN5RbAhWg')
+                .then(function(response){
+                    //console.log(response);
+                    // if (response.status == 200) {
+                    //     dispatch('fetchRules');
+                    // }
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
             }
         },
         computed: {
@@ -54,6 +79,12 @@
                     return this.$store.state.rules;
                 }
             }
+        },
+        created: function() {
+            this.$store.dispatch('fetchRules');
+            // https://www.npmjs.com/package/signalr-no-jquery
+        },
+        mounted: function() {
         }
     }
 </script>
