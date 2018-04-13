@@ -73,3 +73,4 @@ yarn-error.log*
 *.sln
 
 package-lock.json
+src/apikey.js

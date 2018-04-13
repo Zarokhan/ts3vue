@@ -31,6 +31,7 @@
 
 <script>
 import axios from 'axios'
+import apikey from '../apikey'
     export default {
         name: 'rules',
         data() {
@@ -46,8 +47,8 @@ import axios from 'axios'
             addRule: function(e) {
                 e.preventDefault();
                 //this.$store.dispatch('addRule', [this.form.rule]);
-                axios.post('http://systembolagetwebapi.azurewebsites.net/api/ts3rules?token=RUFMm3XVnKmFk4aLYELj7tJpN5RbAhWg',{
-                //axios.post('http://localhost:53573/api/ts3rules?token=RUFMm3XVnKmFk4aLYELj7tJpN5RbAhWg',{
+                axios.post('http://systembolagetwebapi.azurewebsites.net/api/ts3rules?token=' + apikey,{
+                //axios.post('http://localhost:53573/api/ts3rules?token=' + apikey,{
                     Id: 0,
                     Rule: this.form.rule
                 })
@@ -60,8 +61,8 @@ import axios from 'axios'
                 this.form.rule = '';
             },
             deleteRule: function(Id) {
-                axios.delete('http://systembolagetwebapi.azurewebsites.net/api/ts3rules/' + Id + '?token=RUFMm3XVnKmFk4aLYELj7tJpN5RbAhWg')
-                //axios.delete('http://localhost:53573/api/ts3rules/' + Id + '?token=RUFMm3XVnKmFk4aLYELj7tJpN5RbAhWg')
+                axios.delete('http://systembolagetwebapi.azurewebsites.net/api/ts3rules/' + Id + '?token=' + apikey)
+                //axios.delete('http://localhost:53573/api/ts3rules/' + Id + '?token=' + apikey)
                 .then(function(response){
                     //console.log(response);
                     // if (response.status == 200) {
