@@ -86,7 +86,7 @@ import axios from 'axios'
                 if (this.$store.getters.getCheckedLength == 0) {
                     this.$store.commit('updateWarningmsg', 'You need to accept the terms and conditions!');
                 } else {
-                    axios.post('http://systembolagetwebapi.azurewebsites.net/api/Applicants',{
+                    axios.post('https://systembolagetwebapi.azurewebsites.net/api/Applicants',{
                         Id: 0,
                         Email: this.$store.state.form.email,
                         FullName: this.$store.state.form.name,

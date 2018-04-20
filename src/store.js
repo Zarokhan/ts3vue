@@ -68,7 +68,7 @@ export default new Vuex.Store({
   },
   actions: {
     fetchRules({ commit }) {
-        axios.get('http://systembolagetwebapi.azurewebsites.net/api/ts3rules?token=' + apikey)
+        axios.get('https://systembolagetwebapi.azurewebsites.net/api/ts3rules?token=' + apikey)
         //axios.get('http://localhost:53573/api/ts3rules?token=' + apikey)
         .then(response => {
             let rules = response.data;

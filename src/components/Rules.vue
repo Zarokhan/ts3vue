@@ -47,7 +47,7 @@ import apikey from '../apikey'
             addRule: function(e) {
                 e.preventDefault();
                 //this.$store.dispatch('addRule', [this.form.rule]);
-                axios.post('http://systembolagetwebapi.azurewebsites.net/api/ts3rules?token=' + apikey,{
+                axios.post('https://systembolagetwebapi.azurewebsites.net/api/ts3rules?token=' + apikey,{
                 //axios.post('http://localhost:53573/api/ts3rules?token=' + apikey,{
                     Id: 0,
                     Rule: this.form.rule
@@ -61,7 +61,7 @@ import apikey from '../apikey'
                 this.form.rule = '';
             },
             deleteRule: function(Id) {
-                axios.delete('http://systembolagetwebapi.azurewebsites.net/api/ts3rules/' + Id + '?token=' + apikey)
+                axios.delete('https://systembolagetwebapi.azurewebsites.net/api/ts3rules/' + Id + '?token=' + apikey)
                 //axios.delete('http://localhost:53573/api/ts3rules/' + Id + '?token=' + apikey)
                 .then(function(response){
                     //console.log(response);
